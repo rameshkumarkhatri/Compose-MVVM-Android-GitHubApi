@@ -14,6 +14,7 @@ data class Repository(
     val description: String? = null,
     val stargazers_count: Int = 0,
     val watchers_count: Int = 0,
+    val html_url: String? = null,
 )
 
 data class Owner(
