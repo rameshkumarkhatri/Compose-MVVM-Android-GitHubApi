@@ -6,7 +6,7 @@ import retrofit2.http.QueryMap
 
 interface GitHubApiService {
     @GET("search/repositories")
-    suspend fun searchRepos(@QueryMap query: Map<String, String>, apiKey: String): SearchResponse
+    suspend fun searchRepos(@QueryMap query: Map<String, String>): SearchResponse
 }
 
 object ApiConstants {

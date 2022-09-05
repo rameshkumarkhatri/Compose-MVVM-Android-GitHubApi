@@ -1,14 +1,16 @@
 package com.mobifyall.githubapi.repos
 
+import com.mobifyall.githubapi.core.models.SearchResponse
 import com.mobifyall.githubapi.core.network.GitHubApiService
 
 interface GitHubRepo {
-    fun searchReposForOrganization(map: Map<String, String>)
+    suspend fun searchReposForOrganization(map: Map<String, String>): SearchResponse
 }
 
-class GitHubRepoImpl(service: GitHubApiService): GitHubRepo {
+// we can implement cache here
+class GitHubRepoImpl(private val service: GitHubApiService) : GitHubRepo {
 
-    override fun searchReposForOrganization(orgName: String) {
-        TODO("Not yet implemented")
+    override suspend fun searchReposForOrganization(map: Map<String, String>): SearchResponse {
+        return service.searchRepos(map)
     }
 }

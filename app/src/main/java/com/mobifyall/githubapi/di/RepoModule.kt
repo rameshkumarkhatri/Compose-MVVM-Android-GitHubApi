@@ -16,7 +16,7 @@ object ReposModule {
 
     @Singleton
     @Provides
-    fun provideRestaurantSearchRepo(service: GitHubApiService): GitHubRepo {
+    fun provideGitHubRepo(service: GitHubApiService): GitHubRepo {
         return GitHubRepoImpl(service)
     }
 }
