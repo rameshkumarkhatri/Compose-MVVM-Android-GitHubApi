@@ -1,9 +1,7 @@
 package com.mobifyall.githubapi.viewmodels
 
-import android.widget.SearchView
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mobifyall.githubapi.commons.getString
 import com.mobifyall.githubapi.core.models.SearchResponse
 import com.mobifyall.githubapi.core.network.ApiConstants
 import com.mobifyall.githubapi.repos.GitHubRepo
@@ -12,13 +10,9 @@ import com.mobifyall.githubapi.viewstates.SearchViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -40,7 +34,10 @@ class HomeViewModel @Inject constructor(
     //region public behavior
     fun searchOrganization(name: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            repo.searchReposForOrganization(createQueryMap(name))
+            val data = repo.searchReposForOrganization(createQueryMap(name))
+            viewModelState.update {
+                it.copy(searchTerm = name, response = data, error = null, api = false)
+            }
         }
     }
     //endregion
@@ -87,7 +84,6 @@ data class ViewModelState(
         }?.toList() ?: emptyList()
         return SearchViewState.Success("Search results for \'$searchTerm\'", list)
     }
-
 }
 
 
