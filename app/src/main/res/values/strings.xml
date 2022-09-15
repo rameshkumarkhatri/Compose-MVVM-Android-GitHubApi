@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GitHubApi</string>
+    <string name="content_description_search_icon">Search Icon button</string>
+    <string name="no_recent_searches">Currently you have no recent search organizations.</string>
 </resources>
