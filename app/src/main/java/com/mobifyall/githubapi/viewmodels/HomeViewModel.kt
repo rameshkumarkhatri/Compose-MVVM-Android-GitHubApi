@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.mobifyall.githubapi.core.models.SearchResponse
 import com.mobifyall.githubapi.core.network.ApiConstants
 import com.mobifyall.githubapi.repos.GitHubRepo
-import com.mobifyall.githubapi.ui.screens.SearchBarUIState
+import com.mobifyall.githubapi.viewstates.SearchBarUIState
 import com.mobifyall.githubapi.viewstates.RepoUIState
 import com.mobifyall.githubapi.viewstates.SearchViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
