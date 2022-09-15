@@ -16,6 +16,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.mobifyall.githubapi.navigation.AppNav
+import com.mobifyall.githubapi.ui.screens.HomeScreen
 import com.mobifyall.githubapi.ui.screens.SearchScreen
 import com.mobifyall.githubapi.ui.theme.GitHubApiTheme
 import com.mobifyall.githubapi.viewmodels.HomeViewModel
@@ -31,16 +33,17 @@ class MainActivity : ComponentActivity() {
             GitHubApiTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background
                 ) {
                     val navController = rememberNavController()
 
                     NavHost(
-                        navController = navController,
-                        startDestination = "home"
+                        navController = navController, startDestination = AppNav.Home.deeplink
                     ) {
-                        composable("home") {
+                        composable(AppNav.Home.deeplink) {
+                            HomeScreen(navHostController = navController)
+                        }
+                        composable(AppNav.Search.deeplink) {
                             SearchScreen(
                                 viewModel = viewModel,
                             )
@@ -49,18 +52,5 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "jhgfdsarrrxΩxaA    1d $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    GitHubApiTheme {
-        Greeting("Android")
     }
 }
