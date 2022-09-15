@@ -45,8 +45,10 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(AppNav.Search.deeplink) {
                             SearchScreen(
-                                viewModel = viewModel,
-                            )
+                                viewModel = viewModel
+                            ) {
+                                navController.navigateUp()
+                            }
                         }
                     }
                 }

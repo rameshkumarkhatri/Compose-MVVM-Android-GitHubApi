@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.mobifyall.githubapi.core.models.SearchResponse
 import com.mobifyall.githubapi.core.network.ApiConstants
 import com.mobifyall.githubapi.repos.GitHubRepo
+import com.mobifyall.githubapi.ui.screens.SearchBarUIState
 import com.mobifyall.githubapi.viewstates.RepoUIState
 import com.mobifyall.githubapi.viewstates.SearchViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,15 +30,31 @@ class HomeViewModel @Inject constructor(
     val uiState = viewModelState.map {
         it.toUIState()
     }.stateIn(viewModelScope, SharingStarted.Eagerly, viewModelState.value.toUIState())
+
+    val searchBarUIState = viewModelState.map {
+        toSearchUIState(it)
+    }.stateIn(viewModelScope, SharingStarted.Eagerly, toSearchUIState(viewModelState.value))
+
+    private fun toSearchUIState(it: ViewModelState): SearchBarUIState {
+        return SearchBarUIState(it.searchTerm.orEmpty())
+    }
+
     //endregion
 
     //region public behavior
-    fun searchOrganization(name: String) {
+    fun searchOrganization() {
+        val term = viewModelState.value.searchTerm.orEmpty()
         viewModelScope.launch(Dispatchers.IO) {
-            val data = repo.searchReposForOrganization(createQueryMap(name))
+            val data = repo.searchReposForOrganization(createQueryMap(term))
             viewModelState.update {
-                it.copy(searchTerm = name, response = data, error = null, api = false)
+                it.copy(searchTerm = term, response = data, error = null, api = false)
             }
+        }
+    }
+
+    fun inputSearchTerm(input: String) {
+        viewModelState.update {
+            it.copy(searchTerm = input)
         }
     }
     //endregion
@@ -82,7 +99,7 @@ data class ViewModelState(
                 it.description.orEmpty()
             )
         }?.toList() ?: emptyList()
-        return SearchViewState.Success("Search results for \'$searchTerm\'", list)
+        return SearchViewState.Success(title = "Search results for \'$searchTerm\'", list = list)
     }
 }
 
