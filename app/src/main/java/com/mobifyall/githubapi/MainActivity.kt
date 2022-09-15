@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.BottomSheetScaffold
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -45,10 +46,17 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(AppNav.Search.deeplink) {
                             SearchScreen(
-                                viewModel = viewModel
-                            ) {
+                                viewModel = viewModel,
+                            onNavigateBack = {
                                 navController.navigateUp()
-                            }
+                            },
+                                showDescriptionClicked = { position ->
+
+                                })
+                        }
+                        composable(AppNav.Details.deeplink) {
+
+
                         }
                     }
                 }
