@@ -15,12 +15,12 @@ import com.mobifyall.githubapi.ui.theme.Typography
 import com.mobifyall.githubapi.viewstates.RepoUIState
 
 @Composable
-fun RowGitHubRepoUIComponent(item: RepoUIState, onClick: () -> Unit) {
+fun RowGitHubRepoUIComponent(item: RepoUIState, onClick: (String) -> Unit) {
     Column(
         Modifier
             .fillMaxWidth()
             .clickable {
-                onClick.invoke()
+                onClick.invoke(item.url)
             }
             .padding(horizontal = 8.dp, vertical = 16.dp)
     ) {

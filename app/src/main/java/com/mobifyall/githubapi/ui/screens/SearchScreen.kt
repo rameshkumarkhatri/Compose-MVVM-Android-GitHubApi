@@ -24,7 +24,7 @@ import com.mobifyall.githubapi.viewstates.SearchViewState
 fun SearchScreen(
     viewModel: HomeViewModel,
     onNavigateBack: () -> Unit,
-    showDescriptionClicked: (Int) -> Unit
+    showDescriptionClicked: (String) -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val searchBarUIState by viewModel.searchBarUIState.collectAsState()

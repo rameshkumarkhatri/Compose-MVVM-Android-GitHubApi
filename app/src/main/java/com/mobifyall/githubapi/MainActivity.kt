@@ -45,22 +45,19 @@ class MainActivity : ComponentActivity() {
                             HomeScreen(navHostController = navController)
                         }
                         composable(AppNav.Search.deeplink) {
-                            SearchScreen(
-                                viewModel = viewModel,
-                            onNavigateBack = {
+                            SearchScreen(viewModel = viewModel, onNavigateBack = {
                                 navController.navigateUp()
-                            },
-                                showDescriptionClicked = { position ->
-
-                                })
-                        }
-                        composable(AppNav.Details.deeplink) {
-
-
-                        }
+                            }, showDescriptionClicked = ::showDetails
+                        })
                     }
                 }
             }
         }
     }
+
+    private fun showDetails() {
+//    var customTabsIntent :CustomTabsIntent  = builder.build();
+//    customTabsIntent.launchUrl(requireContext(), Uri.parse(url))
+    }
 }
+
