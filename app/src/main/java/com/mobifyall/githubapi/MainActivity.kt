@@ -1,9 +1,11 @@
 package com.mobifyall.githubapi
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.BottomSheetScaffold
 import androidx.compose.material.MaterialTheme
@@ -47,17 +49,17 @@ class MainActivity : ComponentActivity() {
                         composable(AppNav.Search.deeplink) {
                             SearchScreen(viewModel = viewModel, onNavigateBack = {
                                 navController.navigateUp()
-                            }, showDescriptionClicked = ::showDetails
-                        })
+                            }, showDescriptionClicked = ::showDetails)
+                        }
                     }
                 }
             }
         }
     }
 
-    private fun showDetails() {
-//    var customTabsIntent :CustomTabsIntent  = builder.build();
-//    customTabsIntent.launchUrl(requireContext(), Uri.parse(url))
+    private fun showDetails(url: String) {
+        var customTabsIntent: CustomTabsIntent = CustomTabsIntent.Builder().build();
+        customTabsIntent.launchUrl(this, Uri.parse(url))
     }
 }
 

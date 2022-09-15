@@ -66,10 +66,13 @@ fun SearchScreen(
                     LazyColumn(content = {
                         itemsIndexed(
                             data.list
-                        ) { position, item ->
-                            RowGitHubRepoUIComponent(item) {
-                                showDescriptionClicked.invoke(position)
-                            }
+                        ) { _, item ->
+                            RowGitHubRepoUIComponent(item, showDescriptionClicked)
+                            Divider(
+                                Modifier.padding(16.dp, 0.dp),
+                                color = Color.Gray,
+                                thickness = 1.dp
+                            )
                         }
                     })
                 }
