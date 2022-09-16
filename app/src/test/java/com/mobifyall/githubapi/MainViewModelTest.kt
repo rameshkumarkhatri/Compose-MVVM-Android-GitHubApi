@@ -5,9 +5,7 @@ import com.mobifyall.githubapi.core.network.GithubException
 import com.mobifyall.githubapi.repos.GithubRepoFake
 import com.mobifyall.githubapi.viewmodels.HomeViewModel
 import com.mobifyall.githubapi.viewstates.SearchViewState
-import com.mobifyall.githubapi.rules.MainCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.*
