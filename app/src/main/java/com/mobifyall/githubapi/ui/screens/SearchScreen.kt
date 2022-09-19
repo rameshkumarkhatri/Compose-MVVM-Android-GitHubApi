@@ -10,9 +10,12 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.mobifyall.githubapi.R
+import com.mobifyall.githubapi.commons.TAG_BACK_NAVIGATION_ICON
+import com.mobifyall.githubapi.commons.TAG_LIST
 import com.mobifyall.githubapi.ui.components.ErrorUIComponent
 import com.mobifyall.githubapi.ui.components.HeaderUIComponent
 import com.mobifyall.githubapi.ui.components.RowGitHubRepoUIComponent
@@ -43,7 +46,7 @@ fun SearchScreen(
                     IconButton(onClick = { onNavigateBack() }) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
-                            modifier = Modifier,
+                            modifier = Modifier.testTag(TAG_BACK_NAVIGATION_ICON),
                             contentDescription = stringResource(id = R.string.content_description_back_icon)
                         )
                     }
@@ -63,7 +66,7 @@ fun SearchScreen(
                 is SearchViewState.Success -> {
                     val data = (uiState as SearchViewState.Success)
                     HeaderUIComponent(data.title)
-                    LazyColumn(content = {
+                    LazyColumn(Modifier.testTag(TAG_LIST), content = {
                         itemsIndexed(
                             data.list
                         ) { _, item ->

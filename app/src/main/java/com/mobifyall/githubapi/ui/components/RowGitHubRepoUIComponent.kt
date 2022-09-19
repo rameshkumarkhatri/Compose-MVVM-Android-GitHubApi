@@ -10,16 +10,18 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.mobifyall.githubapi.R
+import com.mobifyall.githubapi.commons.TAG_ROW_REPO
 import com.mobifyall.githubapi.ui.theme.Typography
 import com.mobifyall.githubapi.viewstates.RepoUIState
 
 @Composable
 fun RowGitHubRepoUIComponent(item: RepoUIState, onClick: (String) -> Unit) {
     Column(
-        Modifier
+        Modifier.testTag(TAG_ROW_REPO)
             .fillMaxWidth()
             .clickable {
                 onClick.invoke(item.url)

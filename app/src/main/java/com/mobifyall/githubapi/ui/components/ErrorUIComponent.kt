@@ -7,13 +7,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.mobifyall.githubapi.R
+import com.mobifyall.githubapi.commons.TAG_ERROR_MESSAGE
 
 @Composable
 fun ErrorUIComponent(errorText: String) {
-    Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center) {
+    Column(Modifier.fillMaxSize().testTag(TAG_ERROR_MESSAGE), verticalArrangement = Arrangement.Center) {
         Image(
             painter = painterResource(id = R.drawable.no_data),
             contentDescription = "Error description image.",

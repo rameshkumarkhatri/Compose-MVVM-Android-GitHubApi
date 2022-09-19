@@ -44,7 +44,9 @@ class MainActivity : ComponentActivity() {
                         navController = navController, startDestination = AppNav.Home.deeplink
                     ) {
                         composable(AppNav.Home.deeplink) {
-                            HomeScreen(navHostController = navController)
+                            HomeScreen {
+                                navController.navigate(AppNav.Search.deeplink)
+                            }
                         }
                         composable(AppNav.Search.deeplink) {
                             SearchScreen(viewModel = viewModel, onNavigateBack = {

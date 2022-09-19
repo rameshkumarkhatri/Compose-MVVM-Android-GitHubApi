@@ -2,3 +2,10 @@ package com.mobifyall.githubapi.commons
 
 
 const val TAG_SEARCH_INPUT = "TAG_SEARCH_INPUT"
+const val TAG_SEARCH_ICON = "TAG_SEARCH_ICON"
+const val TAG_BACK_NAVIGATION_ICON = "TAG_BACK_NAVIGATION_ICON"
+const val TAG_HEADER_TITLE = "TAG_HEADER_TITLE"
+const val TAG_LIST = "TAG_LIST"
+const val TAG_ERROR_MESSAGE = "TAG_ERROR_MESSAGE"
+const val TAG_LOADING = "TAG_LOADING"
+const val TAG_ROW_REPO = "TAG_ROW_REPO"

@@ -13,15 +13,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.mobifyall.githubapi.R
+import com.mobifyall.githubapi.commons.TAG_SEARCH_ICON
 import com.mobifyall.githubapi.navigation.AppNav
 
 
 @Composable
-fun HomeScreen(navHostController: NavHostController) {
+fun HomeScreen(searchClicked: () ->Unit) {
     Scaffold(Modifier, topBar = {
         TopAppBar(modifier = Modifier, title = {
             Text(
@@ -32,10 +34,10 @@ fun HomeScreen(navHostController: NavHostController) {
                 contentDescription = stringResource(
                     id = R.string.content_description_search_icon
                 ),
-                modifier = Modifier
+                modifier = Modifier.testTag(TAG_SEARCH_ICON)
                     .padding(vertical = 16.dp, horizontal = 16.dp)
                     .clickable {
-                        navHostController.navigate(AppNav.Search.deeplink)
+                        searchClicked.invoke()
                     })
         })
     }) { padding ->
