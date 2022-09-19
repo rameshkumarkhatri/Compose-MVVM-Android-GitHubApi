@@ -5,7 +5,6 @@ import com.mobifyall.githubapi.BaseTest
 import com.mobifyall.githubapi.commons.*
 import com.mobifyall.githubapi.screens.HomeScreen
 import com.mobifyall.githubapi.screens.SearchScreen
-import com.mobifyall.githubapi.ui.screens.HomeScreen
 import org.junit.Before
 import org.junit.Test
 
